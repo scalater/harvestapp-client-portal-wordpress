@@ -1,0 +1,22 @@
+/vendor
+/vendor-scope/**/vendor
+node_modules
+.DS_Store
+
+# ignore node dependency directories
+node_modules/
+
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment variables file
+.env*
+!.env.example
+
+# Optional npm cache directory
+.npm
+
+.idea
