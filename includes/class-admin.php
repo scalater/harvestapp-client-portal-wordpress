@@ -59,11 +59,11 @@ class Admin extends Base {
                     <select name="harvest_client" id="harvest_client">
                         <option value="">Select Client</option>
                         <?
-                        $user_id = get_option( 'harvestapp_client_portal_wordpress_user_id' );
+                        $account_id = get_option( 'harvestapp_client_portal_wordpress_user_id' );
                         $personal_token = get_option( 'harvestapp_client_portal_wordpress_personal_token' );
                         $clients = array(array('id'=>0,'name'=>'No Client'));
-                        if(!empty($user_id) && !empty($personal_token)){
-                            $harvest = new Harvest($user_id, $personal_token);
+                        if(!empty($account_id) && !empty($personal_token)){
+                            $harvest = new Harvest($account_id, $personal_token);
 	                        $clients = $harvest->getClients();
                         }
                         $harvest_client = get_the_author_meta( 'harvest_client', $user->ID );

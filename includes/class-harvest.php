@@ -104,4 +104,17 @@ class Harvest extends Base {
 
 		return array();
 	}
+
+	public function getUnInvoice( $from, $to ) {
+		$un_invoiced_time = $this->get( '/v2/reports/uninvoiced', array(
+			'from'       => $from,
+			'to'         => $to,
+		) );
+
+		if ( ! empty( $un_invoiced_time ) && ! empty( $un_invoiced_time['content'] ) && ! empty( $un_invoiced_time['content']['results'] ) ) {
+			return $un_invoiced_time['content']['results'];
+		}
+
+		return array();
+	}
 }
