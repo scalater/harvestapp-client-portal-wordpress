@@ -71,6 +71,26 @@ class Harvest extends Base {
 		}
 	}
 
+
+	public function post( $endpoint, $parameters ) {
+		try {
+			$response = $this->guzzle_client->request( 'POST', $this->api . $endpoint, array(
+					'json'    => $parameters,
+					'headers' => $this->headers()
+				)
+			);
+
+			return $this->result( $response, true );
+
+		} catch ( ClientException $e ) {
+			return (array) json_decode( $e->getResponse()->getBody()->getContents() );
+		} catch ( GuzzleException $e ) {
+			error_log( 'SCALATER\HARVESTAPPCLIENTPORTAL::' . $e->getMessage() );
+
+			return false;
+		}
+	}
+
 	/**
 	 * @param  Response  $response
 	 * @param  bool  $get_body
